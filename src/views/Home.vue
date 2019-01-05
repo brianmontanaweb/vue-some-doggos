@@ -19,5 +19,7 @@ import Photos from '@/components/Photos.vue';
     Photos
   },
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  
+}
 </script>

@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <StickyMenu></StickyMenu>
-    <Search></Search>
-    <Photos></Photos>
+    <Search :getSelectedBreed="getSelectedBreed"></Search>
+    <Photos :photos="photos"></Photos>
   </div>
 </template>
 
@@ -16,8 +16,22 @@ import Photos from '@/components/Photos.vue';
   components: {
     StickyMenu,
     Search,
-    Photos
+    Photos,
   },
+  data() {
+    return {
+      photos: []
+    }
+  },
+  methods: {
+    getSelectedBreed: function(e) {
+      fetch(`https://dog.ceo/api/breed/${e.target.value}/images`)
+        .then(res => res.json())
+        .then(resJson => {
+          this.$data.photos = resJson.message;
+        })
+    }
+  }
 })
 export default class Home extends Vue {
   
